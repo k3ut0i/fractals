@@ -1,0 +1,7 @@
+.\~
+GPATH
+GRTAGS
+GTAGS
+*.pgm
+draw_sample
+*.o

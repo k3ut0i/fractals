@@ -1,0 +1,4 @@
+* Generating Fractal Images
+
+An Mandelbrot set image generated with pixel density 0.001
+[[file:mandelbrot/mandelbrot_0.001_resized.png]]
