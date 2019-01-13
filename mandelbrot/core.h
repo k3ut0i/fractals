@@ -9,6 +9,7 @@
 #define MAX_DISTANCE 4
 
 int draw_image_custom(const char* filename, double precision,
-		      double complex bottom_right, double width, double height);
+		      double bottom_right_x, double bottom_right_y,
+		      double width, double height);
 int draw_image(const char* filename, double precision);
 #endif

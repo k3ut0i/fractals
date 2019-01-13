@@ -49,7 +49,7 @@ int draw_image(const char* f, double p)
   return 0;
 }
 
-int draw_image_custom(const char* fname, double p, double complex br,
+int draw_image_custom(const char* fname, double p, double br_x, double br_y,
 		      double width, double height)
 {
   FILE *fp = fopen(fname, "w");
@@ -57,13 +57,14 @@ int draw_image_custom(const char* fname, double p, double complex br,
     fprintf(stderr, "File error: %s", strerror(errno));
     exit(EXIT_FAILURE);
   }
-  double br_x = creal(br);
-  double br_y = cimag(br);
+
   int pixel_width = floor(width / p);
   int pixel_height = floor(height / p);
-  fprintf(fp, "P2\n%d %d\n255", pixel_width, pixel_height);
-  for(double ypos = br_y; ypos < br_y + height; ypos += p){
-    for(double xpos = br_x; xpos < br_x + width; xpos += p){
+  fprintf(fp, "P2\n%d %d\n255\n", pixel_width, pixel_height);
+  for(int j = 0; j < pixel_height; j++){
+    for(int i = 0; i < pixel_width; i++){
+      double xpos = br_x + p * i;
+      double ypos = br_y + p * j;
       fprintf(fp, "%d ", (int)floor(256 * (1- diverge_rate(xpos + ypos * I))));
     }
     fputc('\n', fp);

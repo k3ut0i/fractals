@@ -1,9 +1,23 @@
-* Generating Fractal Images
-** Mandelbrot sets
-An Mandelbrot set image generated with pixel density 0.001
+* Collection of Images
+** Mandelbrot
 [[file:mandelbrot/mandelbrot_0.001_resized.png]]
 
+Mandelbrot zoomed to -0.909-0.275i
+[[file:mandelbrot/custom_-0.909x-0.275.png]]
 ** Julia sets
+
+Julia Set image c = -1+0.1i with precision 0.001, resized
+[[file:julia/julia_0.001_-1x0.1_resized.png]]
+
+
+c = 1 - GoldenRatio, precision 0.001 resized
+[[file:julia/julia_0.001_1minusgolden_resized.png]]
+
+
+c = -1i, precision 0.001 resized
+[[file:julia/julia_0.001_0x-1_resized.png]]
+
+
 A Rabbit set
 #+BEGIN_EXAMPLE
   $ time ./draw_sample "julia_0.001.pgm" 0.001 -0.12256116687665x0.74486176661974                                                                                          
@@ -12,5 +26,3 @@ A Rabbit set
 
 [[file:julia/julia_rabbit_resized.png]]
 
-** Newton fractals
-biquadratic equation z^4 - 1
