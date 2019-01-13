@@ -8,8 +8,7 @@
 /* Square of distance from the origin from which divergence is sure */
 #define MAX_DISTANCE 4
 
-
-double diverge_rate(double complex c);
-
+int draw_image_custom(const char* filename, double precision,
+		      double complex bottom_right, double width, double height);
 int draw_image(const char* filename, double precision);
 #endif

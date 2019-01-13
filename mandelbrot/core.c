@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <complex.h>
-
+#include <string.h>
+#include <errno.h>
 #include "core.h"
 
 static inline double complex mandelbrot_fn(double complex z, double complex c)
@@ -9,7 +11,7 @@ static inline double complex mandelbrot_fn(double complex z, double complex c)
   return z * z + c;
 }
 
-double diverge_rate(double complex c)
+static double diverge_rate(double complex c)
 {
   int iter_num = 0;
   for(double complex md_seq = 0.0 + 0.0 * I;
@@ -21,6 +23,7 @@ double diverge_rate(double complex c)
   return iter_num/MAX_ITERATION;
 }
 
+/* Vanilla Mandelbrot set image */
 int draw_image(const char* f, double p)
 {
   FILE *fp = fopen(f, "w");
@@ -42,6 +45,29 @@ int draw_image(const char* f, double p)
     fputc('\n', fp);
   }
 
+  fclose(fp);
+  return 0;
+}
+
+int draw_image_custom(const char* fname, double p, double complex br,
+		      double width, double height)
+{
+  FILE *fp = fopen(fname, "w");
+  if(fp == NULL){
+    fprintf(stderr, "File error: %s", strerror(errno));
+    exit(EXIT_FAILURE);
+  }
+  double br_x = creal(br);
+  double br_y = cimag(br);
+  int pixel_width = floor(width / p);
+  int pixel_height = floor(height / p);
+  fprintf(fp, "P2\n%d %d\n255", pixel_width, pixel_height);
+  for(double ypos = br_y; ypos < br_y + height; ypos += p){
+    for(double xpos = br_x; xpos < br_x + width; xpos += p){
+      fprintf(fp, "%d ", (int)floor(256 * (1- diverge_rate(xpos + ypos * I))));
+    }
+    fputc('\n', fp);
+  }
   fclose(fp);
   return 0;
 }
