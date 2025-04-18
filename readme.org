@@ -14,3 +14,9 @@ A Rabbit set
 
 ** Newton fractals
 biquadratic equation z^4 - 1
+
+** TODO guile interface for automation
+- libguile
+- imlib2
+- libpng
+

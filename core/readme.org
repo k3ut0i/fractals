@@ -1,0 +1,6 @@
+* TODO Scripting for generic 2d image plotting
+I wrote the core image generation code, but there are bugs in scaling calculations. There is still guile scripting to be done.
+
+** Some Results
+#+CAPTION: mandelbrot image in box -0.6 < x < -0.7, 0.4 < y < 0.5
+[[./mandelbrot_-0.7_-0.6_0.4_0.5_5000.jpg]]
